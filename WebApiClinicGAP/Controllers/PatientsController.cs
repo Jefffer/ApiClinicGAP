@@ -17,6 +17,10 @@ namespace WebApiClinicGAP.Controllers
         private DBModel db = new DBModel();
 
         // GET: api/Patients
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<Patients> GetPatients()
         {
             return db.Patients;

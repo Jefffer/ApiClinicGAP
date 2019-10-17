@@ -39,10 +39,10 @@ namespace WebApiClinicGAP.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPatients(int id, Patients patients)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             if (id != patients.idPatient)
             {
@@ -74,10 +74,10 @@ namespace WebApiClinicGAP.Controllers
         [ResponseType(typeof(Patients))]
         public IHttpActionResult PostPatients(Patients patients)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             db.Patients.Add(patients);
             db.SaveChanges();

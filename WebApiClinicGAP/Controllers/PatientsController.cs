@@ -39,6 +39,17 @@ namespace WebApiClinicGAP.Controllers
             return Ok(patients);
         }
 
+        public string GetPatientName(int id)
+        {
+            Patients patients = db.Patients.Find(id);
+            if (patients == null)
+            {
+                return null;
+            }
+
+            return patients.patientName;
+        }
+
         // PUT: api/Patients/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPatients(int id, Patients patients)

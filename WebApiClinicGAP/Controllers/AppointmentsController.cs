@@ -16,6 +16,7 @@ namespace WebApiClinicGAP.Controllers
     public class AppointmentsController : ApiController
     {
         private DBModel db = new DBModel();
+        private PatientsController patientsController = new PatientsController();
 
         // GET: api/Appointments
         public IQueryable<Appointments> GetAppointments()
@@ -34,6 +35,49 @@ namespace WebApiClinicGAP.Controllers
             }
 
             return Ok(appointments);
+        }
+
+        [Route("api/Appointments/GetAppointments")]
+        [HttpGet]
+        public List<AppointmentCustom> GetCustomAppointments()
+        {            
+            List<Appointments> appointments = db.Appointments.ToList();
+            List<AppointmentCustom> _appointments = new List<AppointmentCustom>();
+            
+            foreach (Appointments app in appointments)
+            {
+                AppointmentCustom _app = new AppointmentCustom {
+                    idAppointment = app.idAppointment,
+                    idPatient = app.fk_idPatient,
+                    patientName = patientsController.GetPatientName(app.fk_idPatient),
+                    appointmentType = GetAppointmentTypeName(app.fk_idAppointmentType),
+                    doctorName = GetDoctorName(app.fk_idDoctor),
+                    AppointmentDateTime = app.AppointmentDateTime
+                };
+                _appointments.Add(_app);
+            }
+
+            return _appointments;
+        }
+
+        private string GetDoctorName(int id)
+        {
+            Doctors doctor = db.Doctors.Find(id);
+            if (doctor == null)
+            {
+                return null;
+            }
+            return doctor.doctorName;
+        }
+
+        private string GetAppointmentTypeName(int id)
+        {
+            AppointmentsTypes appointmentType = db.AppointmentsTypes.Find(id);
+            if (appointmentType == null)
+            {
+                return null;
+            }
+            return appointmentType.name;
         }
 
         // PUT: api/Appointments/5
@@ -108,7 +152,8 @@ namespace WebApiClinicGAP.Controllers
             db.Appointments.Add(_appointment);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = _appointment.idAppointment }, _appointment);
+            //return CreatedAtRoute("DefaultApi", new { id = _appointment.idAppointment }, _appointment);
+            return Ok();
         }
 
         // DELETE: api/Appointments/5

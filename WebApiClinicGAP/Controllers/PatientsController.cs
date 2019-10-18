@@ -83,6 +83,13 @@ namespace WebApiClinicGAP.Controllers
             //    return BadRequest(ModelState);
             //}
 
+            // Existing patient validation
+            Patients _patient = db.Patients.Where(p => p.idPatient == patients.idPatient).FirstOrDefault();
+            if (_patient != null)
+            {
+                return BadRequest();
+            }
+
             db.Patients.Add(patients);
             db.SaveChanges();
 

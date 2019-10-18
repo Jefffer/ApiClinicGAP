@@ -23,7 +23,14 @@ namespace WebApiClinicGAP.Controllers
         /// <returns></returns>
         public IQueryable<Patients> GetPatients()
         {
-            return db.Patients;
+            IQueryable<Patients> patients = db.Patients;
+            //List<Patients> _patients = new List<Patients>();
+            //foreach (var pat in patients)
+            //{
+            //    pat.Appointments;
+            //    _patients.Add(pat);
+            //}
+            return patients;
         }
 
         // GET: api/Patients/5

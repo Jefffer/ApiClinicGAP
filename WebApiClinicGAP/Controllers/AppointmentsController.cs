@@ -82,19 +82,30 @@ namespace WebApiClinicGAP.Controllers
 
         // PUT: api/Appointments/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAppointments(int id, Appointments appointments)
+        public IHttpActionResult PutAppointments(int id, AppointmentCustom appointment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != appointments.idAppointment)
+            if (id != appointment.idAppointment)
             {
                 return BadRequest();
             }
 
-            db.Entry(appointments).State = EntityState.Modified;
+            int typeId = db.AppointmentsTypes.Where(at => at.name.ToLower() == appointment.appointmentType.ToLower()).FirstOrDefault().idAppointmentType;
+
+            Appointments app = new Appointments {
+                idAppointment = appointment.idAppointment,
+                fk_idPatient = appointment.idPatient,
+                fk_idDoctor = 1,
+                fk_idAppointmentType = typeId,
+                AppointmentDateTime = appointment.AppointmentDateTime,
+                isActive = true
+            };
+
+            db.Entry(app).State = EntityState.Modified;
 
             try
             {
@@ -134,16 +145,18 @@ namespace WebApiClinicGAP.Controllers
         [HttpPost]
         public IHttpActionResult CreateAppointment(AppointmentCustom appointment)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
+            // Get type and doctors ID
             int typeId = db.AppointmentsTypes.Where(at => at.name.ToLower() == appointment.appointmentType.ToLower()).FirstOrDefault().idAppointmentType;
+            int doctorId = db.Doctors.Where(at => at.doctorName.ToLower() == appointment.doctorName.ToLower()).FirstOrDefault().idDoctor;
 
             Appointments _appointment = new Appointments {
                 fk_idPatient = appointment.idPatient,
-                fk_idDoctor = 1,
+                fk_idDoctor = doctorId,
                 fk_idAppointmentType = typeId,
                 AppointmentDateTime = appointment.AppointmentDateTime,
                 isActive = true
@@ -164,6 +177,14 @@ namespace WebApiClinicGAP.Controllers
             if (appointments == null)
             {
                 return NotFound();
+            }
+
+            // Get hours between dates
+            DateTime now = DateTime.Now;
+            double hours = (appointments.AppointmentDateTime - now).TotalHours;
+            if (hours < 24)
+            {
+                return BadRequest();
             }
 
             db.Appointments.Remove(appointments);

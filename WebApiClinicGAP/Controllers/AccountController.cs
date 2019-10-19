@@ -28,7 +28,7 @@ namespace WebApiClinicGAP.Controllers
 
         public AccountController()
         {
-        }
+        }        
 
         public AccountController(ApplicationUserManager userManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
@@ -47,6 +47,13 @@ namespace WebApiClinicGAP.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        [Route("api/Account/mylogin")]
+        [HttpPost]
+        public IHttpActionResult MyLogin(string userName, string password)
+        {
+            return Ok();
         }
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }

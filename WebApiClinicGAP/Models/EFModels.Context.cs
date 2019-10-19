@@ -29,5 +29,6 @@ namespace WebApiClinicGAP.Models
         public virtual DbSet<AppointmentsTypes> AppointmentsTypes { get; set; }
         public virtual DbSet<Doctors> Doctors { get; set; }
         public virtual DbSet<Patients> Patients { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

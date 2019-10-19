@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ClinicGAPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ClinicGAPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Appointments">
           <Key>
             <PropertyRef Name="idAppointment" />
@@ -43,6 +43,17 @@
           <Property Name="patientGender" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="patientPhone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="patientBirth" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fk_idRole" Type="int" Nullable="false" />
+          <Property Name="lastConnection" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Appointments_AppointmentsTypes1">
           <End Role="AppointmentsTypes" Type="Self.AppointmentsTypes" Multiplicity="1" />
@@ -85,6 +96,7 @@
           <EntitySet Name="AppointmentsTypes" EntityType="Self.AppointmentsTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Appointments_AppointmentsTypes1" Association="Self.FK_Appointments_AppointmentsTypes1">
             <End Role="AppointmentsTypes" EntitySet="AppointmentsTypes" />
             <End Role="Appointments" EntitySet="Appointments" />
@@ -98,8 +110,7 @@
             <End Role="Appointments" EntitySet="Appointments" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClinicGAPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -201,7 +212,19 @@
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Appointments" EntitySet="Appointments" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="ClinicGAPModel.Users" />
         </EntityContainer>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="userName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fk_idRole" Type="Int32" Nullable="false" />
+          <Property Name="lastConnection" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -248,6 +271,18 @@
                 <ScalarProperty Name="patientGender" ColumnName="patientGender" />
                 <ScalarProperty Name="patientPhone" ColumnName="patientPhone" />
                 <ScalarProperty Name="patientBirth" ColumnName="patientBirth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ClinicGAPModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="lastConnection" ColumnName="lastConnection" />
+                <ScalarProperty Name="fk_idRole" ColumnName="fk_idRole" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

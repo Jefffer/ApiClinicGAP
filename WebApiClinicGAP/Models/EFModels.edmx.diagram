@@ -12,6 +12,7 @@
         <AssociationConnector Association="ClinicGAPModel.FK_Appointments_AppointmentsTypes1" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicGAPModel.FK_Appointments_Doctors" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicGAPModel.FK_Appointments_Patients" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ClinicGAPModel.Users" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

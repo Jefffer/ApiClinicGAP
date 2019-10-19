@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UnitTest1.cs" />
@@ -56,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClinicGAPDataAcces\ClinicGAPDataAcces.csproj">
+      <Project>{31EC6139-65FB-4A8B-B88C-B70F84FB019F}</Project>
+      <Name>ClinicGAPDataAcces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebApiClinicGAP\WebApiClinicGAP.csproj">
       <Project>{04428C61-B1CF-4F6A-8F73-7898578FDE72}</Project>
       <Name>WebApiClinicGAP</Name>

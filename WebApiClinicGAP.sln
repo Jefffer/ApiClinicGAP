@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiClinicGAP", "WebApiCl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIClinicGAP.UnitTests", "APIClinicGAP.UnitTests\APIClinicGAP.UnitTests.csproj", "{59F9104E-649C-4F78-837B-E00BDD029602}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicGAPDataAcces", "ClinicGAPDataAcces\ClinicGAPDataAcces.csproj", "{31EC6139-65FB-4A8B-B88C-B70F84FB019F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{59F9104E-649C-4F78-837B-E00BDD029602}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59F9104E-649C-4F78-837B-E00BDD029602}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59F9104E-649C-4F78-837B-E00BDD029602}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31EC6139-65FB-4A8B-B88C-B70F84FB019F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31EC6139-65FB-4A8B-B88C-B70F84FB019F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31EC6139-65FB-4A8B-B88C-B70F84FB019F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31EC6139-65FB-4A8B-B88C-B70F84FB019F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

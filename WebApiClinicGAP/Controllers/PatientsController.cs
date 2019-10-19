@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinicGAPDataAcces;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,21 +10,23 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApiClinicGAP.Models;
+using ClinicGAPDataAcces.Repositories;
 
 namespace WebApiClinicGAP.Controllers
 {
     public class PatientsController : ApiController
     {
-        private DBModel db = new DBModel();
+        //private DBModel db = new DBModel();
+        PatientRepository repository = new PatientRepository();
 
         // GET: api/Patients
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public IQueryable<Patients> GetPatients()
+        public List<Patients> GetPatients()
         {
-            IQueryable<Patients> patients = db.Patients;
+            List<Patients> patients = repository.GetAll();
             //List<Patients> _patients = new List<Patients>();
             //foreach (var pat in patients)
             //{
@@ -37,7 +40,8 @@ namespace WebApiClinicGAP.Controllers
         [ResponseType(typeof(Patients))]
         public IHttpActionResult GetPatients(int id)
         {
-            Patients patients = db.Patients.Find(id);
+            //Patients patients = db.Patients.Find(id);
+            Patients patients = repository.GetById(id);
             if (patients == null)
             {
                 return NotFound();
@@ -48,7 +52,7 @@ namespace WebApiClinicGAP.Controllers
 
         public string GetPatientName(int id)
         {
-            Patients patients = db.Patients.Find(id);
+            Patients patients = repository.GetById(id);
             if (patients == null)
             {
                 return null;
@@ -71,11 +75,11 @@ namespace WebApiClinicGAP.Controllers
                 return BadRequest();
             }
 
-            db.Entry(patients).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                //db.Entry(patients).State = EntityState.Modified;
+                repository.Update(patients);
+                //db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -102,14 +106,15 @@ namespace WebApiClinicGAP.Controllers
             //}
 
             // Existing patient validation
-            Patients _patient = db.Patients.Where(p => p.idPatient == patients.idPatient).FirstOrDefault();
+            Patients _patient = repository.GetAll().Where(p => p.idPatient == patients.idPatient).FirstOrDefault();
             if (_patient != null)
             {
                 return BadRequest();
             }
 
-            db.Patients.Add(patients);
-            db.SaveChanges();
+            repository.Add(patients);
+            //db.Patients.Add(patients);
+            //db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = patients.idPatient }, patients);
         }
@@ -118,30 +123,31 @@ namespace WebApiClinicGAP.Controllers
         [ResponseType(typeof(Patients))]
         public IHttpActionResult DeletePatients(int id)
         {
-            Patients patients = db.Patients.Find(id);
+            Patients patients = repository.GetById(id);
             if (patients == null)
             {
                 return NotFound();
             }
 
-            db.Patients.Remove(patients);
-            db.SaveChanges();
+            repository.Delete(patients);
+            //db.Patients.Remove(patients);
+            //db.SaveChanges();
 
             return Ok(patients);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
         private bool PatientsExists(int id)
         {
-            return db.Patients.Count(e => e.idPatient == id) > 0;
+            return repository.GetAll().Count(e => e.idPatient == id) > 0;
         }
     }
 }

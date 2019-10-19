@@ -7,25 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiClinicGAP.Models
+namespace ClinicGAPDataAcces
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Patients
+    public partial class Doctors
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Patients()
+        public Doctors()
         {
             this.Appointments = new HashSet<Appointments>();
         }
     
-        public int idPatient { get; set; }
-        public string patientName { get; set; }
-        public string patientIdCard { get; set; }
-        public string patientGender { get; set; }
-        public string patientPhone { get; set; }
-        public System.DateTime patientBirth { get; set; }
+        public int idDoctor { get; set; }
+        public string doctorName { get; set; }
+        public string doctorPhone { get; set; }
+        public Nullable<System.DateTime> doctorBirth { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointments> Appointments { get; set; }

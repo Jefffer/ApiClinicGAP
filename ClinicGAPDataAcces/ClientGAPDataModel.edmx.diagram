@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ccd1db2089d841a5979dc37b9ea39a47" Name="Diagram1">
+      <Diagram DiagramId="6034b26d1318461597f47ec1a90fbcd8" Name="Diagram1">
         <EntityTypeShape EntityType="ClinicGAPModel.Appointments" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicGAPModel.AppointmentsTypes" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicGAPModel.Doctors" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicGAPModel.Patients" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicGAPModel.Users" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="ClinicGAPModel.FK_Appointments_AppointmentsTypes1" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicGAPModel.FK_Appointments_Doctors" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicGAPModel.FK_Appointments_Patients" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ClinicGAPModel.Users" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

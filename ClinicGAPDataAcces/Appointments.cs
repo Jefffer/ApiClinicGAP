@@ -7,18 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiClinicGAP.Models
+namespace ClinicGAPDataAcces
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Appointments
     {
-        public int idUser { get; set; }
-        public string userName { get; set; }
-        public string password { get; set; }
-        public int fk_idRole { get; set; }
-        public Nullable<System.DateTime> lastConnection { get; set; }
+        public int idAppointment { get; set; }
+        public int fk_idPatient { get; set; }
+        public int fk_idAppointmentType { get; set; }
+        public int fk_idDoctor { get; set; }
+        public System.DateTime AppointmentDateTime { get; set; }
         public bool isActive { get; set; }
+    
+        public virtual AppointmentsTypes AppointmentsTypes { get; set; }
+        public virtual Doctors Doctors { get; set; }
+        public virtual Patients Patients { get; set; }
     }
 }

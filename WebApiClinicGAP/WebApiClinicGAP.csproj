@@ -242,38 +242,8 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Appointments.cs">
-      <DependentUpon>EFModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AppointmentsTypes.cs">
-      <DependentUpon>EFModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Custom\AppointmentCustom.cs" />
-    <Compile Include="Models\Doctors.cs">
-      <DependentUpon>EFModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EFModels.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EFModels.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EFModels.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EFModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EFModels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EFModels.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Patients.cs">
-      <DependentUpon>EFModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users.cs">
-      <DependentUpon>EFModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -296,16 +266,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Models\EFModels.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EFModels.edmx</DependentUpon>
-      <LastGenOutput>EFModels.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\EFModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EFModels.edmx</DependentUpon>
-      <LastGenOutput>EFModels.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -327,13 +287,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\EFModels.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EFModels.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\EFModels.edmx.diagram">
-      <DependentUpon>EFModels.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -370,6 +323,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClinicGAPDataAcces\ClinicGAPDataAcces.csproj">
+      <Project>{31ec6139-65fb-4a8b-b88c-b70f84fb019f}</Project>
+      <Name>ClinicGAPDataAcces</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

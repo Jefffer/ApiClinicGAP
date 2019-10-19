@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiClinicGAP.Models
+namespace ClinicGAPDataAcces
 {
     using System;
     using System.Data.Entity;

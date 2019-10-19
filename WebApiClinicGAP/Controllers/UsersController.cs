@@ -60,23 +60,24 @@ namespace WebApiClinicGAP.Controllers
             };
             db.Users.Add(user);
 
-            try
-            {
+            //try
+            //{
                 db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (UsersExists(user.idUser))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //}
+            //catch (DbUpdateException)
+            //{
+            //    if (UsersExists(user.idUser))
+            //    {
+            //        return Conflict();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
-            return CreatedAtRoute("DefaultApi", new { id = user.idUser }, user);
+            //return CreatedAtRoute("DefaultApi", new { id = user.idUser }, user);
+            return Ok();
         }
 
         // PUT: api/Users/5

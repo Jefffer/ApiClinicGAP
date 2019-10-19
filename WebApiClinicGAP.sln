@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiClinicGAP", "WebApiClinicGAP\WebApiClinicGAP.csproj", "{04428C61-B1CF-4F6A-8F73-7898578FDE72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiClinicGAP.Tests", "WebApiClinicGAP.Tests\WebApiClinicGAP.Tests.csproj", "{A73FB2A4-669A-4996-83AC-5B4DBA5C5609}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{04428C61-B1CF-4F6A-8F73-7898578FDE72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04428C61-B1CF-4F6A-8F73-7898578FDE72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04428C61-B1CF-4F6A-8F73-7898578FDE72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A73FB2A4-669A-4996-83AC-5B4DBA5C5609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A73FB2A4-669A-4996-83AC-5B4DBA5C5609}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A73FB2A4-669A-4996-83AC-5B4DBA5C5609}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A73FB2A4-669A-4996-83AC-5B4DBA5C5609}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

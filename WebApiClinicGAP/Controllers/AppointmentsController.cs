@@ -95,11 +95,12 @@ namespace WebApiClinicGAP.Controllers
             }
 
             int typeId = db.AppointmentsTypes.Where(at => at.name.ToLower() == appointment.appointmentType.ToLower()).FirstOrDefault().idAppointmentType;
+            int doctorId = db.Doctors.Where(at => at.doctorName.ToLower() == appointment.doctorName.ToLower()).FirstOrDefault().idDoctor;
 
             Appointments app = new Appointments {
                 idAppointment = appointment.idAppointment,
                 fk_idPatient = appointment.idPatient,
-                fk_idDoctor = 1,
+                fk_idDoctor = doctorId,
                 fk_idAppointmentType = typeId,
                 AppointmentDateTime = appointment.AppointmentDateTime,
                 isActive = true

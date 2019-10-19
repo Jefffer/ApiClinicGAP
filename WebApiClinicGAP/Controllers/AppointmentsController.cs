@@ -95,6 +95,14 @@ namespace WebApiClinicGAP.Controllers
                 return BadRequest();
             }
 
+            // Validate if the patient already has appointments assigned for today
+            //Appointments patient = db.Appointments.Where(p => p.fk_idPatient == appointment.idPatient
+            //&& p.AppointmentDateTime.Year == appointment.AppointmentDateTime.Year
+            //&& p.AppointmentDateTime.Month == appointment.AppointmentDateTime.Month
+            //&& p.AppointmentDateTime.Day == appointment.AppointmentDateTime.Day).FirstOrDefault();
+            //if (patient != null)
+            //    return NotFound();
+
             int typeId = db.AppointmentsTypes.Where(at => at.name.ToLower() == appointment.appointmentType.ToLower()).FirstOrDefault().idAppointmentType;
             int doctorId = db.Doctors.Where(at => at.doctorName.ToLower() == appointment.doctorName.ToLower()).FirstOrDefault().idDoctor;
 
@@ -151,6 +159,14 @@ namespace WebApiClinicGAP.Controllers
             //{
             //    return BadRequest(ModelState);
             //}
+
+            // Validate if the patient already has appointments assigned for today
+            Appointments patient = db.Appointments.Where(p => p.fk_idPatient == appointment.idPatient
+            && p.AppointmentDateTime.Year == appointment.AppointmentDateTime.Year
+            && p.AppointmentDateTime.Month == appointment.AppointmentDateTime.Month
+            && p.AppointmentDateTime.Day == appointment.AppointmentDateTime.Day).FirstOrDefault();
+            if (patient != null)            
+                return NotFound();            
 
             // Get type and doctors ID
             int typeId = db.AppointmentsTypes.Where(at => at.name.ToLower() == appointment.appointmentType.ToLower()).FirstOrDefault().idAppointmentType;

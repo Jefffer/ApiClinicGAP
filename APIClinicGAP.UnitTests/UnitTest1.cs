@@ -27,8 +27,8 @@ namespace APIClinicGAP.UnitTests
             var result = appointmentController.PostAppointments(appointment);
 
             // Assert
-            //Assert.
-
+            Appointments app;
+            //Assert.IsTrue(result.TryGetContentValue<Appointments>(out app));
         }
     }
 }

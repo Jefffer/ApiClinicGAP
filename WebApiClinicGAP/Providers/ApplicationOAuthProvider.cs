@@ -27,6 +27,17 @@ namespace WebApiClinicGAP.Providers
             _publicClientId = publicClientId;
         }
 
+        public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+        {
+            // La credenciales de la contraseña del propietario del recurso no proporcionan un id. de cliente.
+            if (context.ClientId == null)
+            {
+                context.Validated();
+            }
+
+            return Task.FromResult<object>(null);
+        }
+
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
@@ -59,18 +70,7 @@ namespace WebApiClinicGAP.Providers
 
             return Task.FromResult<object>(null);
         }
-
-        public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
-        {
-            // La credenciales de la contraseña del propietario del recurso no proporcionan un id. de cliente.
-            if (context.ClientId == null)
-            {
-                context.Validated();
-            }
-
-            return Task.FromResult<object>(null);
-        }
-
+        
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
         {
             if (context.ClientId == _publicClientId)
